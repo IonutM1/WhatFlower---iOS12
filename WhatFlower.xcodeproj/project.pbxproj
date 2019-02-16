@@ -12,6 +12,7 @@
 		C665029B2218650700570D44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66502992218650700570D44 /* Main.storyboard */; };
 		C665029D2218650800570D44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C665029C2218650800570D44 /* Assets.xcassets */; };
 		C66502A02218650800570D44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C665029E2218650800570D44 /* LaunchScreen.storyboard */; };
+		C66502AC2218881900570D44 /* FlowerClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C66502AB2218881900570D44 /* FlowerClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		C665029C2218650800570D44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C665029F2218650800570D44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C66502A12218650800570D44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C66502AB2218881900570D44 /* FlowerClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FlowerClassifier.mlmodel; path = "../../Flower Classification/FlowerClassifier.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				C665029C2218650800570D44 /* Assets.xcassets */,
 				C665029E2218650800570D44 /* LaunchScreen.storyboard */,
 				C66502A12218650800570D44 /* Info.plist */,
+				C66502AB2218881900570D44 /* FlowerClassifier.mlmodel */,
 			);
 			path = WhatFlower;
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C66502AC2218881900570D44 /* FlowerClassifier.mlmodel in Sources */,
 				C66502982218650700570D44 /* ViewController.swift in Sources */,
 				C66502962218650700570D44 /* AppDelegate.swift in Sources */,
 			);
