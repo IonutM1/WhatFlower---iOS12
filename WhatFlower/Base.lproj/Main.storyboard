@@ -18,16 +18,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RaZ-PG-Vwg">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RaZ-PG-Vwg">
+                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RaZ-PG-Vwg" secondAttribute="height" multiplier="1:1" id="W36-6E-p1q"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="8di-yP-9qK">
+                                <rect key="frame" x="16" y="447" width="343" height="200"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RaZ-PG-Vwg" secondAttribute="trailing" id="K4o-r3-2Oo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RaZ-PG-Vwg" secondAttribute="bottom" id="cUz-HT-3x0"/>
-                            <constraint firstItem="RaZ-PG-Vwg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eOo-gm-GEX"/>
-                            <constraint firstItem="RaZ-PG-Vwg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="w4c-gJ-7QB"/>
+                            <constraint firstItem="RaZ-PG-Vwg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9cZ-4h-3YA"/>
+                            <constraint firstItem="RaZ-PG-Vwg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ij4-XV-ALB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8di-yP-9qK" secondAttribute="bottom" constant="20" id="XEh-ug-Yrl"/>
+                            <constraint firstItem="8di-yP-9qK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Xc2-f5-Igr"/>
+                            <constraint firstItem="RaZ-PG-Vwg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Zb7-FF-jEW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8di-yP-9qK" secondAttribute="trailing" constant="16" id="dzN-RQ-3pN"/>
+                            <constraint firstItem="8di-yP-9qK" firstAttribute="top" secondItem="RaZ-PG-Vwg" secondAttribute="bottom" constant="8" id="sq8-wo-zXE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -40,6 +52,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="RaZ-PG-Vwg" id="CFU-tv-pJV"/>
+                        <outlet property="label" destination="8di-yP-9qK" id="Njc-DL-afQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -9,12 +9,16 @@
 import UIKit
 import CoreML
 import Vision
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet weak var imageView: UIImageView!
-    
+    let wikipediaURL = "https://en.wikipedia.org/w/api.php"
     let imagePicked = UIImagePickerController()
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicked.delegate = self
         imagePicked.sourceType = .camera
         imagePicked.allowsEditing = true
+        
+        label.numberOfLines = 0
         
     }
 
@@ -45,18 +51,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func detect(image: CIImage){
         
         guard let model = try? VNCoreMLModel(for: FlowerClassifier().model) else {
+            
             fatalError("Loading CoreML Model Failed.")
+            
         }
-        let request = VNCoreMLRequest(model: model) { (request, error) in
-            guard let results = request.results as? [VNClassificationObservation] else {
+         let request = VNCoreMLRequest(model: model) { (request, error) in
+            guard let classification = request.results?.first as? VNClassificationObservation
+                
+                else {
+                
                 fatalError("Model failed to process image.")
             }
             
-            print(results)
+            //print(classification)
             
-            if let firstResult = results.first{
-                self.navigationItem.title = firstResult.identifier.capitalized
-            }
+            self.navigationItem.title = classification.identifier.capitalized
+
+            self.requestInfo(flowerName: classification.identifier)
+            
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
@@ -69,9 +81,42 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+    func requestInfo(flowerName: String) {
+        
+        let parameters : [String:String] = [
+            "format" : "json",
+            "action" : "query",
+            "prop" : "extracts",
+            "exintro" : "",
+            "explaintext" : "",
+            "titles" : flowerName,
+            "indexpageids" : "",
+            "redirects" : "1",
+            ]
+
+        
+        Alamofire.request(wikipediaURL, method: .get, parameters: parameters).responseJSON { (response) in
+            if response.result.isSuccess{
+                
+                print("Got the wikipedia info")
+//                print(JSON(response.result.value))
+                
+                let flowerJSON : JSON = JSON(response.result.value!)
+                
+                let pageid = flowerJSON["query"]["pageids"][0].stringValue
+                
+                let flowerDescription = flowerJSON["query"]["pages"][pageid]["extract"].stringValue
+                
+//                print(flowerDescription)
+                self.label.text = flowerDescription
+            }
+        }
+    }
+    
     
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
         present(imagePicked, animated: true, completion: nil)
+        
     }
     
 }
