@@ -30,7 +30,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         label.numberOfLines = 0
         
-        
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -102,7 +101,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if response.result.isSuccess{
                 
                 print("Got the wikipedia info")
-                print(JSON(response.result.value))
+//                print(JSON(response.result.value))
                 
                 let flowerJSON : JSON = JSON(response.result.value!)
                 
@@ -110,7 +109,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 
                 let flowerDescription = flowerJSON["query"]["pages"][pageid]["extract"].stringValue
                 
+                let flowerImageURL = flowerJSON["query"]["pages"][pageid]["thumbnail"]["source"].stringValue
 //                print(flowerDescription)
+                
+                self.imageView.sd_setImage(with: URL(string: flowerImageURL))
+                
                 self.label.text = flowerDescription
             }
         }
